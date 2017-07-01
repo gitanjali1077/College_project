@@ -66,9 +66,7 @@
 			var section = $(this).data('nav-section'),
 				navba = $('#navba');
 
-		
-
-		if ( $('[data-section="' + section + '"]').length ) {
+				if ( $('[data-section="' + section + '"]').length ) {
 			    	$('html, body').animate({
 			        	scrollTop: $('[data-section="' + section + '"]').offset().top
 			    	}, 500);
@@ -115,10 +113,7 @@
 		  	if (direction === 'up') {
 		    	navActive($(this.element).data('section'));
 		  	}
-		},
-
-
- {
+		}, {
 		  	offset: function() { return -$(this.element).height() + 155; }
 		});
 
@@ -128,54 +123,25 @@
 	
 
 
-
-
-
-
-
-
 	// Window Scroll
 	var windowScroll = function() {
 		var lastScrollTop = 0;
 
-	
+		$(window).scroll(function(event){
 
-	$(window).scroll(function(event){
+		   	var header = $('#fh5co-header'),
+				scrlTop = $(this).scrollTop();
 
-	
-
-	   	var header = $('#fh5co-header'),
-
-
-		scrlTop = $(this).scrollTop();
-
-
-
-	if ( scrlTop > 500 && scrlTop <= 2000 ) {
-	
-
-	header.addClass('navbar-fixed-top fh5co-animated slideInDown');
-		
-	} else if ( scrlTop <= 500) {
-				
-
-if ( header.hasClass('navbar-fixed-top') ) {
-				
-
-header.addClass('navbar-fixed-top fh5co-animated slideOutUp');
-		
-
-	setTimeout(function(){
-					
-
-	header.removeClass('navbar-fixed-top fh5co-animated slideInDown slideOutUp');
-				
-
-	}, 100 );
+			if ( scrlTop > 500 && scrlTop <= 2000 ) {
+				header.addClass('navbar-fixed-top fh5co-animated slideInDown');
+			} else if ( scrlTop <= 500) {
+				if ( header.hasClass('navbar-fixed-top') ) {
+					header.addClass('navbar-fixed-top fh5co-animated slideOutUp');
+					setTimeout(function(){
+						header.removeClass('navbar-fixed-top fh5co-animated slideInDown slideOutUp');
+					}, 100 );
 				}
 			} 
-
-
 			
 		});
 	};
@@ -186,31 +152,19 @@ header.addClass('navbar-fixed-top fh5co-animated slideOutUp');
 	// Home
 
 	var homeAnimate = function() {
-	
-
-	if ( $('#fh5co-home').length > 0 ) {	
+		if ( $('#fh5co-home').length > 0 ) {	
 
 			$('#fh5co-home').waypoint( function( direction ) {
-	
-
-									
-				
-
-if( direction === 'down' && !$(this.element).hasClass('animated') ) {
+										
+				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
 
 
-					
-
-setTimeout(function() {
+					setTimeout(function() {
 						$('#fh5co-home .to-animate').each(function( k ) {
-
-
-var el = $(this);
-					
-setTimeout ( function () {
-	
-
-							el.addClass('fadeInUp animated');
+							var el = $(this);
+							
+							setTimeout ( function () {
+								el.addClass('fadeInUp animated');
 							},  k * 200, 'easeInOutExpo' );
 							
 						});
@@ -263,23 +217,14 @@ setTimeout ( function () {
 
 
 					setTimeout(function() {
-						
-
-$('#fh5co-work .to-animate').each(function( k ) {
+						$('#fh5co-work .to-animate').each(function( k ) {
+							var el = $(this);
 							
-
-var el = $(this);
-			
-		setTimeout ( function () {
-								
-el.addClass('fadeInUp animated');
+							setTimeout ( function () {
+								el.addClass('fadeInUp animated');
+							},  k * 200, 'easeInOutExpo' );
 							
-
-},  k * 200, 'easeInOutExpo' );
-							
-					
-
-	});
+						});
 					}, 200);
 
 					
@@ -377,32 +322,18 @@ el.addClass('fadeInUp animated');
 		}
 	};
 
-	
-
-var aboutAnimate = function() {
+	var aboutAnimate = function() {
 		var about = $('#fh5co-about');
-		if ( about.length > 0 ) {
-
-	
+		if ( about.length > 0 ) {	
 
 			about.waypoint( function( direction ) {
-	
-
-									
-		
-
-		if( direction === 'down' && !$(this.element).hasClass('animated') ) {
+										
+				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
 
 
-	
-
-				setTimeout(function() {
-					
-
-	about.find('.to-animate').each(function( k ) {
-						
-
-	var el = $(this);
+					setTimeout(function() {
+						about.find('.to-animate').each(function( k ) {
+							var el = $(this);
 							
 							setTimeout ( function () {
 								el.addClass('fadeInUp animated');
@@ -511,9 +442,7 @@ var aboutAnimate = function() {
 	
 
 	// Document on load.
-	
-
-$(function(){
+	$(function(){
 
 		parallax();
 
@@ -523,26 +452,19 @@ $(function(){
 
 		windowScroll();
 
-	
-
-	navigationSection();
+		navigationSection();
 
 		goToTop();
 
 
 		// Animations
 		homeAnimate();
-		
-
-introAnimate();
+		introAnimate();
 		workAnimate();
 		testimonialAnimate();
 		servicesAnimate();
 		aboutAnimate();
-		
-
-
-countersAnimate();
+		countersAnimate();
 		contactAnimate();
 		
 

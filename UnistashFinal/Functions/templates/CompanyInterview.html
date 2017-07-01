@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html ><head>
 
-
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 
 <link type="text/css" rel="stylesheet" href="{% static 'Typefocus_files/58827200-widget_css_bundle.css' %}">
@@ -93,6 +93,8 @@ overflow-y: scroll; /* Keeps page centered in all browsers regardless of content
 -webkit-text-size-adjust: 100%; /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
 -ms-text-size-adjust:     100%; /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
 }
+html{
+height:auto}
 body {
 background: #fff;
 }
@@ -1079,7 +1081,7 @@ img_thumb_width = 200;
 <div id="header-inner">
 <div class="titlewrapper">
 <h1 class="site-title">
-<a href="#">Interviews (TCS)</a>
+<a href="#">Interviews </a>
 </h1>
 </div>
 <h2 class="site-description">By IGDTUW girls</h2>
@@ -1133,7 +1135,7 @@ img_thumb_width = 200;
 
           <div class="date-outer">
         
-<h2 ><span>Friday, January 15, 2016</span></h2>
+<h2 ><span>Friday, January 15, 2017</span></h2>
 
           <div class="date-posts">
         
@@ -1142,13 +1144,14 @@ img_thumb_width = 200;
 <a name="7654293721430292618"></a>
 <header class="entry-header">
 <h1 class="post-title entry-title">
+
+{% if numberofstudents %}
+
+
 <a href="#">{%for n in numberofstudents %}
 
 {{n.name}}
 </a>
-
-
-
 
 
 
@@ -1174,98 +1177,11 @@ IGDTUW	&nbsp;&nbsp;
 
 {% endfor %}
 </div></div>
-<div style="float:right;padding-right:0px;margin-top:10px;">
-<a class="continue-reading" href="#">Continue reading ?</a>
-</div>
-<div style="clear: both;"></div>
-</div>
-<footer class="entry-meta">
-<i class="fa fa-paperclip"></i>
-<a href="#" rel="tag">Blogger</a>, <a href="#" rel="tag">Images</a>, <a href="#" rel="tag">Tag</a>
-</footer>
-</article>
-<div style="clear: both;"></div>
-</div>
-<div class="post-outer">
-<article class="post hentry">
-<a name="5216487258248707303"></a>
-<header class="entry-header">
-<h1 class="post-title entry-title">
-<a href="#">Images in this template.</a>
-</h1>
-<div class="entry-meta">
-<i class="fa fa-user"></i>
-IGDTUW	&nbsp;&nbsp;
-       <i class="fa fa-tachometer"></i>
-B. Tech	&nbsp;&nbsp;
-       <i class="fa fa-comment"></i>
-<a href="#" onclick="">Internship</a>
-</div>
-</header>
-<div class="post-header-line-1"></div>
-<div class="post-body entry-content">
-<div id="summary5216487258248707303"><img src="{% static 'Typefocus_files/btemplates-china-by-francisco-oliveros.jpg' %}" class="pbtthumbimg"><div>
-    
-        
-    
-    China. Photo by Francisco.
-1 Images in this template:(Click on each of them to download)redox_01....</div></div>
-<script type="text/javascript">createSummaryAndThumb("summary5216487258248707303");</script>
-<div style="float:right;padding-right:0px;margin-top:10px;">
-<a class="continue-reading" href="">Continue reading ?</a>
-</div>
-<div style="clear: both;"></div>
-</div>
-<footer class="entry-meta">
-<i class="fa fa-paperclip"></i>
-<a href="#" rel="tag">Images</a>, <a href="" rel="tag">Tag</a>
-</footer>
-</article>
-<div style="clear: both;"></div>
-</div>
-<div class="post-outer">
-<article class="post hentry">
-<a name="176688286248315224"></a>
-<header class="entry-header">
-<h1 class="post-title entry-title">
-<a href="#">Typefocus is the template number 4544 in BTemplates.</a>
-</h1>
-<div class="entry-meta">
-<i class="fa fa-user"></i>
-BTemplates	&nbsp;&nbsp;
-       <i class="fa fa-tachometer"></i>
-11:23 PM	&nbsp;&nbsp;
-       <i class="fa fa-comment"></i>
-<a href="#" onclick="">No comments</a>
-</div>
-</header>
-<div class="post-header-line-1"></div>
-<div class="post-body entry-content">
-<div id="summary176688286248315224"><img src="{% static 'Typefocus_files/btemplates-chichenitza-by-francisco-oliveros.jpg' %}" class="pbtthumbimg"><div>
-		Chichenitza, Mexico. Photo by Francisco.Typefocus is the template 
-number 4544 in BTemplates, where a total of 50 009 399 templates has 
-been downloaded since 2008. This template was created by NBThemes and is
- the 78th template published in BTemplates.com by this author.Download 
-Typefocus and more Blogger...</div></div>
-<script type="text/javascript">createSummaryAndThumb("summary176688286248315224");</script>
-<div style="float:right;padding-right:0px;margin-top:10px;">
-<a class="continue-reading" href="#">Continue reading ?</a>
-</div>
-<div style="clear: both;"></div>
-</div>
-<footer class="entry-meta">
-<i class="fa fa-paperclip"></i>
-<a href="#" rel="tag">Blogger</a>, <a href="#" rel="tag">BTemplates</a>, <a href="#" rel="tag">Tag</a>
-</footer>
-</article>
-<div style="clear: both;"></div>
-</div>
 
+{% else %}
+<h1  style="font-size:280%; text-align:center; margin-top:10% ">Coming Soon</h1>
 
-
-</div>
-</div>
-</div>
+{% endif  %}
 </div>
 
 
@@ -1283,7 +1199,11 @@ Typefocus and more Blogger...</div></div>
 
 
 
-<div class="wrapper row5">
+<div class="wrapper row5" style=" position:fixed
+  align:bottom;
+margin-top:auto; //300px;
+  bottom: 0px;
+  ">
   <div id="copyright" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved -  <a href="{%url 'index' 'index' %}" >Unistash</a></p>
