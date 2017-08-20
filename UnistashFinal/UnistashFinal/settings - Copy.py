@@ -15,23 +15,8 @@ import os
 import smtplib
 #import Functions.templatetags.myfilters.py
 
-SENDER='igdtunistash@gmail.com'
+SENDER='gitanjali1077@gmail.com'
 PASS= ''
-
-GOOGLE_RECAPTCHA_SECRET_KEY = '6LffWSkUAAAAAJX3JOSvGQTVw9AY9egMZ5Dmrwhm'
-EMAIL_HOST      = 'smtp.gmail.com' 
-EMAIL_HOST_PASSWORD = ''
-EMAIL_HOST_USER = 'igdtunistash@gmail.com'
-EMAIL_PORT      = 1025
-EMAIL_USE_TLS   = True
-DEFAULT_FROM_EMAIL  = 'igdtunistash@gmail.com'
-SERVER_EMAIL    = 'igdtunistash@gmail.com'
-# for console
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-LOGIN_REDIRECT_URL = 'index.html'
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -58,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Functions',
-    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -103,12 +87,8 @@ WSGI_APPLICATION = 'UnistashFinal.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'unistash',
-        'USER': 'root',
-        'PASSWORD': 'system',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

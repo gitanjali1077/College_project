@@ -922,7 +922,8 @@ div.pp_default .pp_close{
 /************************ Fun Facts Section *******************************/
 .funFactArea{
     position: relative;
-    background: #fff;
+
+    background:none;
 }
 .funFactArea:after{
     content: "";
