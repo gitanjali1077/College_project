@@ -163,7 +163,7 @@ nav .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px;
 
 {% if student %}
 
-<li  ><img class="circle" src=" {% static 'abc1.jpg' %}" style="width=50px; height:50px"></li>
+<li  ><img class="circle" src=" {{ abc.photo.url }}" style="width=50px; height:50px"></li>
 {% endif %}
 
           </ul>
@@ -276,6 +276,23 @@ nav .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px;
 
 
 {% endfor %}
+  {% for field in profile_form %}
+    <div class="form-group" >
+             <div class=" col-sm-offset-2 col-sm-10">
+ <!---     <span class="text-danger small">{{ field.errors}}
+</span>   -->
+</div>
+   <label class="control-label ">{{ field.label_tag }} </label>
+     <div class=""> {{ field }} </div>
+
+
+   
+
+</div>
+
+
+{% endfor %}
+
  <div class="form-group">
        <div class=" col-sm-offset-2 col-sm-10">
 <button type="submit" class="btn btn-success">Submit</button>  

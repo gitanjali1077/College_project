@@ -9,7 +9,7 @@ from django.views import generic
 from .forms import UserForm ,ContactForm
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import authenticate,login,logout
-from .forms import UserForm ,UserFormlog
+from .forms import UserForm ,UserFormlog, ProfileForm
 from django.template import RequestContext
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User #as auth_user
@@ -19,7 +19,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import students
 from django.views.decorators.cache import cache_control
-
+from .models import Profile
 
 @cache_control(no_cache=True, must_revalidate=True)    
 def index(request,string=None):
@@ -27,18 +27,23 @@ def index(request,string=None):
   a=string 
   template = a+'.html'
   student=request.user
+  abc=Profile
+  if student.username:
+      k=student.id
+      abc=Profile.objects.get(user_id=k)
+   
   # here student is used for putting name on every page
   if a=='index' or a=='notes' or a=='papers' or a=='practical-files': 
    if request.method == 'GET':
       user_form = UserForm(request.GET)
-      
-      return render(request, template, {'student':student,
-           'user_form': user_form  , 'msgs' : msgs       })
+      profile_form=ProfileForm
+      return render(request, template, {'student':student,'abc':abc,
+           'user_form': user_form  , 'profile_form':profile_form,'msgs' : msgs       })
 
       
    if request.method == 'POST':
       user_form = UserForm(request.POST)
-       
+      profile_form=ProfileForm(request.POST)
       if  user_form.is_valid()  :
            
            user1= user_form.save(commit=False)
@@ -47,6 +52,8 @@ def index(request,string=None):
            fname = user_form.cleaned_data['first_name']
            password = user_form.cleaned_data['password']
            email = user_form.cleaned_data['email']
+           user1._photo=request.FILES['photo']#,False]            
+         
            user1.set_password(password)
            
            user1.save()
@@ -71,11 +78,12 @@ def index(request,string=None):
            user_form = UserForm(request.GET)
       
       return render(request, template, {
-           'user_form': user_form  , 'msgs' : msgs  ,'student':student     })
+           'user_form': user_form  , 'profile_form':profile_form,'msgs' : msgs ,'abc':abc ,'student':student     })
 
    else:
+     
            msgs='not sent'
-           return render(request,template , {  'user_form': user_form  ,
+           return render(request,template , {  'user_form': user_form  , 'profile_form':profile_form,
                                                'msgs' : msgs })
 	
 
@@ -123,7 +131,7 @@ def index(request,string=None):
 
    else:
            msgs='not sent'
-           return render(request,template , {  'user_form': user_form  ,
+           return render(request,template , {  'user_form': user_form  , 'profile_form':profile_form,
                                                'msgs' : msgs })
 	
 # this is the last one for all the pages
@@ -131,8 +139,11 @@ def index(request,string=None):
    ab="Not Registered user..."
    user_form = UserForm(request.GET)
    student =request.user
+   
    if student.username:
-      return render(request,'contribute.html',{'student':student})#,{'user_form':user_form} )
+      k=student.id
+      abc=Profile.objects.get(user_id=k)
+      return render(request,'contribute.html',{'student':student,'abc':abc})#,{'user_form':user_form} )
         
    else: 
     if request.method == 'GET':
