@@ -24,11 +24,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
      url(r'^logout/$',logout ,   name='logout'),
-
+url(r'^login/', include('django.contrib.auth.urls')),
     url(r'^(?P<string>[\w\-]+)/$',index,name='index'),
-     url(r'^login/(?P<string>[\w\-]+)/$',index,name='index'),
+    # url(r'^login/(?P<string>[\w\-]+)/$',index,name='index'),
    
-    url(r'^notes/(?P<string>[\w\-]+)/$',file1, name='files'),
+    url(r'^notes/(?P<string1>[\w\-]+)/$',file1, name='files'),
     url(r'^interview/(?P<company>[\w\-]+)/$', company ,name='company'),
     #url(r'^content/(?P<string>[\w\-]+)/(?P<stri>[\w\-]+)/$',sidebar, name='side'),
    url(r'^captcha/', include('captcha.urls')),

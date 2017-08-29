@@ -9,7 +9,7 @@ from django.views import generic
 from .forms import UserForm ,ContactForm
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import authenticate,login,logout
-from .forms import UserForm ,UserFormlog, ProfileForm
+from .forms import UserForm ,UserFormlog, ProfileForm  ,UploadForm
 from django.template import RequestContext
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User #as auth_user
@@ -19,7 +19,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import students
 from django.views.decorators.cache import cache_control
-from .models import Profile
+from .models import Profile,File,compsem1
 
 @cache_control(no_cache=True, must_revalidate=True)    
 def index(request,string=None):
@@ -37,7 +37,8 @@ def index(request,string=None):
    if request.method == 'GET':
       user_form = UserForm(request.GET)
       profile_form=ProfileForm
-      return render(request, template, {'student':student,'abc':abc,
+      data=File.objects.all()
+      return render(request, template, {'student':student,'abc':abc,'data':data,
            'user_form': user_form  , 'profile_form':profile_form,'msgs' : msgs       })
 
       
@@ -49,11 +50,14 @@ def index(request,string=None):
            user1= user_form.save(commit=False)
            #prof= profile_form.save()
            username = user_form.cleaned_data['username']
-           fname = user_form.cleaned_data['first_name']
+           #fname = user_form.cleaned_data['first_name']
            password = user_form.cleaned_data['password']
            email = user_form.cleaned_data['email']
-           user1._photo=request.FILES['photo']#,False]            
-         
+           c=request.FILES.get('photo')
+           if c:
+              user1._photo=request.FILES['photo']#,False]            
+           else:
+             user1._photo='abc1.jpg'
            user1.set_password(password)
            
            user1.save()
@@ -178,11 +182,12 @@ def index(request,string=None):
            if user1 :
              auth.login(request, user1)
                 #return redirect('index.html')
-             return render(request,'contribute.html',{ 'student': user1 })#,{'user_form':user_form} )
+             upload_form = UploadForm
+             return redirect('/contribute/',{'upload_form': upload_form })#render(request,'contribute.html',{ 'student': user1 })#,{'user_form':user_form} )
               
            else:
                 #return redirect('nope.html')
-                return render(request,'nope.html')
+                return redirect('/index/')  #render(request,'nope.html')
         
            #profile_form.save()
             #return redirect('settings:profile')
@@ -191,6 +196,35 @@ def index(request,string=None):
         'user_form': user_form1 ,'ab':ab
     })
 
+  elif a=='contribute':
+    template=a+".html"
+    user_form = UserFormlog
+    student=request.user
+    abc=Profile
+    ab="login first"
+    if not student.username:
+      return redirect('/login/') #index(request,'login')
+    else:
+      if request.method == 'GET':
+        upload_form = UploadForm(request.GET)
+        return render(request, template,{'upload_form': upload_form })# , 'profile_form':profile_form,'msgs' : msgs       })
+      if request.method == 'POST':
+         upload_form = UploadForm(request.POST, request.FILES)
+         print "yhn to aya"
+         if  upload_form.is_valid()  :
+           c=upload_form.save(commit=False)
+           name = upload_form.cleaned_data['name']
+           subject_code = upload_form.cleaned_data['subject_code']
+           
+           c.upload_file=request.FILES['upload_file']
+           c.save()
+           ab="Thanks For your Contribution.."
+           return render(request, template,{'upload_form': upload_form ,"ab":ab})
+  
+
+    return render(request,template)
+      
+           
   else:
 
      return render(request,template,{  'student':student} )
@@ -210,9 +244,10 @@ def logout(request):
     #user_form1= users.objects.filter(user__username=request.user)
     #user_form1.username=''
     #return redirect(userlogin)
-    return render(request, 'login.html', {
-        'user_form': user_form ,'ab':ab
-    })
+    return redirect('/login/')
+    #return render(request, 'login.html', {
+    #    'user_form': user_form ,'ab':ab
+    #})
 def index1(request,string=None):
   msgs=''
   a=string 
@@ -229,12 +264,22 @@ def index1(request,string=None):
       
  
 	
-def file1(request,string=None):
+def file1(request,string1=None):
         #try:
         # return FileResponse(open('C:\Users\HCL\Unistash\unistash\Unistash\media\hass.pdf', 'rb'), content_type='application/pdf')
         #except FileNotFoundError:
          #raise Http404()
-         q=string
+         q=string1
+         student =request.user
+   
+         if student.username:
+            k=student.id
+            abc=Profile.objects.get(user_id=k)
+            count=abc.count
+            count=count+1
+            abc.count=count
+            print abc.count
+            abc.save()
          with open('D:/College_Project/UnistashFinal/media/'+q+'.pdf', 'rb') as pdf:
             response = HttpResponse(pdf.read(),content_type='application/pdf')
             response['Content-Disposition'] = 'filename=hass.pdf'

@@ -16,19 +16,19 @@ import smtplib
 #import Functions.templatetags.myfilters.py
 
 SENDER='igdtunistash@gmail.com'
-PASS= ''
+PASS= 'igdtukijai'
 
 GOOGLE_RECAPTCHA_SECRET_KEY = '6LffWSkUAAAAAJX3JOSvGQTVw9AY9egMZ5Dmrwhm'
 EMAIL_HOST      = 'smtp.gmail.com' 
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'igdtukijai'
 EMAIL_HOST_USER = 'igdtunistash@gmail.com'
-EMAIL_PORT      = 1025
+EMAIL_PORT      = 587
 EMAIL_USE_TLS   = True
 DEFAULT_FROM_EMAIL  = 'igdtunistash@gmail.com'
 SERVER_EMAIL    = 'igdtunistash@gmail.com'
 # for console
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 LOGIN_REDIRECT_URL = 'index.html'
 
@@ -104,7 +104,7 @@ WSGI_APPLICATION = 'UnistashFinal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'unistash',
+        'NAME': 'unistashfinal',
         'USER': 'root',
         'PASSWORD': 'system',
         'HOST': 'localhost',

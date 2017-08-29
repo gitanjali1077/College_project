@@ -25,6 +25,7 @@
 		  $('ul.accordion').pixiefyAccordion();
 		})
 		</script>
+
 </head>
 <style>
 /*
@@ -142,8 +143,32 @@ nav .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px;
 <li><a href="{%url 'index' 'practical-files' %}" >Lab Files</a></li>
 
 <li>
-              <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="#nav-collapse1" aria-expanded="false" aria-controls="nav-collapse1">Contribute</a>
-            </li>
+             <a class="btn btn-default btn-outline btn-circle collapsed"   href="{%url 'index' 'login'%}" aria-expanded="false" aria-controls="nav-collapse1">Contribute</a>
+
+
+{% if student %}
+<li><a>{{student.username}}</a></li>
+{% endif %}
+
+{% if student.username %}
+
+<li  ><img class="circle"  src="{{ abc.photo.url }} "
+
+style=" background-image:url({{ abc.photo.url }} )  ;
+  
+  width: 65px;
+  height: 65px;
+"></li>
+{% else %}
+<li  ><img class="circle" src="/static/logo.jpg"
+style="
+  width: 50px;
+  height: 50px;
+"></li>
+
+{% endif %}
+
+
           </ul>
           <ul class="collapse nav navbar-nav nav-collapse" id="nav-collapse1">
              <li><a href="{%url 'index' 'notes' %}" >B. Tech</a></li>
@@ -172,6 +197,11 @@ nav .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px;
       <li>    
     <a class="panel-heading" href="#">Semester 1</a>
     <ul class="shutter-panel-collapse" style="height:150px; overflow:auto" >
+{% for fields in data %}
+   <li>
+<a href="{% url 'files' fields.name %}">{{ fields.name}} </a>
+</li>
+{% endfor %}
       <li>
 <a href="https://drive.google.com/open?id=0B_rrFiMlCi0zUGpFOWJJT2FWaEU">C Notes</a>
 </li>
@@ -594,6 +624,25 @@ nav .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px;
 
 
 {% endfor %}
+
+{% for field in profile_form %}
+    <div class="form-group" >
+             <div class=" col-sm-offset-2 col-sm-10">
+ <!---     <span class="text-danger small">{{ field.errors}}
+</span>   -->
+</div>
+   <label class="control-label ">{{ field.label_tag }} </label>
+     <div class=""> {{ field }} </div>
+
+
+   
+
+</div>
+
+
+{% endfor %}
+
+
  <div class="form-group">
        <div class=" col-sm-offset-2 col-sm-10">
 <button type="submit" class="btn btn-success">Submit</button>  

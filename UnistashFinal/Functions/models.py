@@ -9,8 +9,10 @@ import os
 from django.conf import settings
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    photo = models.ImageField( default = os.path.join(settings.STATIC_ROOT,'static','abc1.jpg'),
-                            )#upload_to='media/')
+    photo = models.ImageField( blank=True,default="static\abc1.jpg",null=True)#default = os.path.join(settings.STATIC_ROOT,'static','abc1.jpg'),
+    count = models.IntegerField(default=0)
+    rate=  models.IntegerField(default=0)
+                            #)#upload_to='media/')
     #rate=models.IntegerField()
 #(max_length=100) #upload_to='media/')
 
@@ -54,3 +56,27 @@ class students(models.Model):
     
     def __str__(self):
         return self.name
+
+class compsem1(models.Model):
+    semester=models.CharField(max_length=20)
+    code=models.CharField(max_length=20)
+    branch=models.CharField(max_length=20)
+    def __str__(self):
+        return self.semester
+
+class File(models.Model):
+    name=models.CharField(max_length=200)
+    sem=models.CharField(max_length=200)
+    branch=models.CharField(max_length=200)
+    main_file=models.FileField()
+    code=models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+class contribute(models.Model):
+     upload_file=models.FileField(upload_to='documents/')
+     name=models.CharField(max_length=200)
+     subject_code =models.CharField(max_length=200)
+    
+

@@ -3,7 +3,7 @@ from django import forms
 from django.db import models
 from .models import users ,contactus
 from captcha.fields import CaptchaField
-from .models import Profile
+from .models import Profile ,contribute
 
 class ProfileForm(forms.ModelForm):
     class Meta:
@@ -17,7 +17,12 @@ class UserForm(forms.ModelForm):
     class Meta:
         #contain info about this outer class
         model = User
-        fields=['username','first_name','email','password']
+        fields=['username','email','password']
+class UploadForm(forms.ModelForm):
+     class Meta:
+        model = contribute
+        fields = ('name','upload_file','subject_code',)
+
 
 class UserFormlog(forms.Form):
     username= forms.CharField()
