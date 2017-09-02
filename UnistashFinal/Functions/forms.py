@@ -8,7 +8,7 @@ from .models import Profile ,contribute
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('photo',)
+        fields = ('profile_photo',)
 
 
 class UserForm(forms.ModelForm):
@@ -21,7 +21,7 @@ class UserForm(forms.ModelForm):
 class UploadForm(forms.ModelForm):
      class Meta:
         model = contribute
-        fields = ('name','upload_file','subject_code',)
+        fields = ('name_of_student','name_of_file','subject','subject_code','upload_file',)
 
 
 class UserFormlog(forms.Form):

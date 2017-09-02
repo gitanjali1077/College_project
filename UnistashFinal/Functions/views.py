@@ -31,14 +31,15 @@ def index(request,string=None):
   if student.username:
       k=student.id
       abc=Profile.objects.get(user_id=k)
-   
+       
   # here student is used for putting name on every page
   if a=='index' or a=='notes' or a=='papers' or a=='practical-files': 
    if request.method == 'GET':
       user_form = UserForm(request.GET)
       profile_form=ProfileForm
       data=File.objects.all()
-      return render(request, template, {'student':student,'abc':abc,'data':data,
+      check=compsem1.objects.all()
+      return render(request, template, {'student':student,'abc':abc,'data':data,'check':check,
            'user_form': user_form  , 'profile_form':profile_form,'msgs' : msgs       })
 
       
@@ -55,13 +56,13 @@ def index(request,string=None):
            email = user_form.cleaned_data['email']
            c=request.FILES.get('photo')
            if c:
-              user1._photo=request.FILES['photo']#,False]            
+              user1._profile_photo=request.FILES['photo']#,False]            
            else:
-             user1._photo='abc1.jpg'
+             user1._profile_photo='abc1.jpg'
            user1.set_password(password)
            
            user1.save()
-           msg="Hello , \n Welcome to Unistash . Thanks for joining us. We will keep you updated!!"
+           msg="Hello , \n Welcome to Unistash- University's Information stack. We are here to make your life much more easier.In case of any query feel free to contact us.We will keep you updated!\n Thanks for joining us"
 
            smtp= smtplib.SMTP('smtp.gmail.com')
            smtp.ehlo()
@@ -207,19 +208,27 @@ def index(request,string=None):
     else:
       if request.method == 'GET':
         upload_form = UploadForm(request.GET)
-        return render(request, template,{'upload_form': upload_form })# , 'profile_form':profile_form,'msgs' : msgs       })
+        k=student.id
+        abc=Profile.objects.get(user_id=k)
+    
+        return render(request, template,{'upload_form': upload_form,'student':student,'abc':abc })# , 'profile_form':profile_form,'msgs' : msgs       })
       if request.method == 'POST':
          upload_form = UploadForm(request.POST, request.FILES)
          print "yhn to aya"
          if  upload_form.is_valid()  :
            c=upload_form.save(commit=False)
-           name = upload_form.cleaned_data['name']
+           name_of_student = upload_form.cleaned_data['name_of_student']
+           name_of_file = upload_form.cleaned_data['name_of_file']
+           subject = upload_form.cleaned_data['subject']
+           #name = upload_form.cleaned_data['name_of_subject']
+          
            subject_code = upload_form.cleaned_data['subject_code']
            
            c.upload_file=request.FILES['upload_file']
            c.save()
            ab="Thanks For your Contribution.."
-           return render(request, template,{'upload_form': upload_form ,"ab":ab})
+           upload_form=UploadForm
+           return render(request, template,{'upload_form': upload_form ,"ab":ab,'student':student})
   
 
     return render(request,template)
@@ -280,6 +289,8 @@ def file1(request,string1=None):
             abc.count=count
             print abc.count
             abc.save()
+         else:
+             return index(request,'login')
          with open('D:/College_Project/UnistashFinal/media/'+q+'.pdf', 'rb') as pdf:
             response = HttpResponse(pdf.read(),content_type='application/pdf')
             response['Content-Disposition'] = 'filename=hass.pdf'

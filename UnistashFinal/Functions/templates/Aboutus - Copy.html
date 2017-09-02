@@ -182,24 +182,6 @@
 		outline: none;
 	}
 	</style> 
-<style>
-.circle {
-  display: block;
-  width: 50px;
-  height: 50px;
-  margin: 1em auto;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  -webkit-border-radius: 99em;
-  -moz-border-radius: 99em;
-  border-radius: 99em;
-  border: 5px solid #eee;
-  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);  
-}
-</style>
-
-
 <!--  styles-->
 	<!-- End demo purposes only -->
 
@@ -230,32 +212,6 @@ style="font-size:170%">
 		            <li style="font-size:170%"><a style="pointer-events:auto" href="{% url 'index' 'notes' %}" >Notes</a></li>
 		            <li style="font-size:170%"><a href="{% url 'index' 'Aboutus'  %}"  >About Us</a></li>
 		            <li style="font-size:170%"><a href="{% url 'index' 'interview' %}"  >Interviews</a></li>
-
-
-{% if student %}
-<li><a>{{student.username}}</a></li>
-{% endif %}
-
-{% if student.username %}
-
-<li  ><img class="circle"  src="{{ abc.photo.url }} "
-
-style=" background-image:url({{ abc.photo.url }} )  ;
-  
-  width: 65px;
-  height: 65px;
-"></li>
-{% else %}
-<li  ><img class="circle" src="/static/logo.jpg"
-style="
-  width: 50px;
-  height: 50px;
-"></li>
-
-{% endif %}
-
-
-
 		           </ul>
 		        </div>
 			    </nav>
@@ -339,20 +295,22 @@ style="
 			</div>
 			<div class="row row-bottom-padded-sm">
 				<div class="col-md-4 col-sm-6 col-xxs-12">
-										<img src="{% static 'images/r.jpg'%}" style="border-radius:10px;"  alt="Image" class="img-responsive">
+					<a href="{% static 'images/work_1.jpg' %}" class="fh5co-project-item image-popup to-animate">
+						<img src="{% static 'images/r.jpg'%}" alt="Image" class="img-responsive">
 						<div class="fh5co-text">
-						<h2 style="margin-left:40%"><b>RIDHI</b></h2>
+						<h2 style="margin-left:40%">RIDHI</h2>
 						<!--<span></span>-->
 						</div>
-					
+					</a>
 				</div>
 				<div class="col-md-4 col-sm-6 col-xxs-12">
-						<img style="border-radius:10px;"     src="{% static 'images/t.jpg' %}" alt="Image" class="img-responsive">
+					<a href=" {% static 'images/work_2.jpg' %}" class="fh5co-project-item image-popup to-animate ">
+						<img src="{% static 'images/t.jpg' %}" alt="Image" class="img-responsive">
 						<div class="fh5co-text">
-						<h2 style="margin-left:40%"><b>TANVI</b></h2>
+						<h2 style="margin-left:40%">TANVI</h2>
 						<!--<span>Web</span>-->
 						</div>
-					
+					</a>
 				</div>
 
 				<div class="clearfix visible-sm-block"></div>
@@ -439,11 +397,109 @@ style="
 		</div>-->
 	</section>
 <!--
-	
+	<section id="fh5co-testimonials" data-section="testimonials">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 section-heading text-center">
+					<h2 class="to-animate">Testimonials</h2>
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2 subtext to-animate">
+							<h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="box-testimony">
+						<blockquote class="to-animate-2">
+							<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+						</blockquote>
+						<div class="author to-animate">
+							<figure><img src="images/person1.jpg" alt="Person"></figure>
+							<p>
+							Jean Doe, CEO <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="box-testimony">
+						<blockquote class="to-animate-2">
+							<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.&rdquo;</p>
+						</blockquote>
+						<div class="author to-animate">
+							<figure><img src="{% static 'images/person2.jpg' %}" alt="Person"></figure>
+							<p>
+							John Doe, Senior UI <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="box-testimony">
+						<blockquote class="to-animate-2">
+							<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. &rdquo;</p>
+						</blockquote>
+						<div class="author to-animate">
+							<figure><img src="{% static 'images/person3.jpg' %}" alt="Person"></figure>
+							<p>
+							Chris Nash, Director <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+	</section>
 
 -->
 <!--
+	<section id="fh5co-
 
+s"  >
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 section-heading text-left">
+					<h2 class=" left-border to-animate">Services</h2>
+					<div class="row">
+						<div class="col-md-8 subtext to-animate">
+							<h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-sm-6 fh5co-service to-animate">
+					<i class="icon to-animate-2 icon-anchor"></i>
+					<h3>What Is It?</h3>
+					<p>IGDTUnistash is an academic portal for the students of igdtuw having an aim to create an archive for all the requirements of students; those that are discovered during the four important years of college.Also we want to make the life of every student of IGDTUW simpler and make these 4 years a much smoother ride.</p>
+				</div>
+				<div class="col-md-6 col-sm-6 fh5co-service to-animate">
+					<i class="icon to-animate-2 icon-layers2"></i>
+					<h3>Idea Behind UNISTASH </h3>
+					<p>The idea behind IGDTUnistash is to create an archive meant for the students of IGDTUW this archive will comprise of notes of all subjects of various branches,previous year papers,projects done by students,assignments, placement study material etc. As the university is established recently, this archive will comprise of information from the very beginning.</p>
+				</div>
+
+				<div class="clearfix visible-sm-block"></div>
+
+				<div class="col-md-6 col-sm-6 fh5co-service to-animate">
+					<i class="icon to-animate-2 icon-video2"></i>
+					<h3>What's New?</h3>
+					<p>Mostly a day or two before the exam seniors get calls and messages from juniors asking for question papers, notes and lab files. Even if such material is circulated to the juniors, not all of them are able to benefit from it. The new thing here is the idea of sharing equally.Also students can take references and even further contribute to the piece of information available in the archive.</p>
+				</div>
+			<!--	<div class="col-md-6 col-sm-6 fh5co-service to-animate">
+					<i class="icon to-animate-2 icon-monitor"></i>
+					<h3>CMS &amp; eCommerce</h3>
+					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</p>
+				</div>
+				
+			</div>
+		</div>
+	</section>
 	-->
 	
 	<section id="fh5co-about" data-section="about" style ="background-image: url({% static 'team.jpg' %});
@@ -455,7 +511,7 @@ style="
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 section-heading text-center">
-					<h2 class="to-animate" style="color:white"><b>Team</b></h2>
+					<h2 class="to-animate">Team</h2>
 					<div class="row">
 						<!--<div class="col-md-8 col-md-offset-2 subtext to-animate">
 							<h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>-->
@@ -466,44 +522,30 @@ style="
 			<div class="row">
 				<div class="col-md-4" >
 					<div class="fh5co-person text-center to-animate">
-						<figure><img style="width:110px;height:140px" src="{% static 'pragya.jpg' %}" alt="Image"></figure>
+						<figure><img src="{% static 'images/p.jpg' %}" alt="Image"></figure>
 						<h3>Pragya Panwar</h3>
-						<span class="fh5co-position" style="color:#15323a"  ><b>Web Developer</b></span>
+						<span class="fh5co-position">Web Developer</span>
 						<!--<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>-->
 						<ul class="social social-circle">
-							<li><a href="https://twitter.com/Pragyapanwar1"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="https://www.facebook.com/pragya.panwar.925"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="https://github.com/pragyapanwar/"><i class="fa fa-github"></i></a></li>
+							<li><a href="#"><i class="icon-twitter"></i></a></li>
+							<li><a href="#"><i class="icon-facebook"></i></a></li>
+							<li><a href="#"><i class="icon-dribbble"></i></a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="fh5co-person text-center to-animate">
-						<figure><img style="width:110px;height:140px"src="{% static 'gitanjali.jpg' %}" alt="Image"></figure>
+						<figure><img src="{% static 'images/person2.jpg' %}" alt="Image"></figure>
 						<h3>Gitanjali Sharma</h3>
-						<span class="fh5co-position" style="color:#15323a" ><b>Web Developer</b></span>
+						<span class="fh5co-position">Web Developer</span>
 						<!--<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>-->
 						<ul class="social social-circle">
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="https://www.facebook.com/gitanjali.sharma.3511"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="https://github.com/gitanjali1077/"><i class="fa fa-github"></i></a></li>
+							<li><a href="#"><i class="icon-twitter"></i></a></li>
+							<li><a href="#"><i class="icon-facebook"></i></a></li>
+							<li><a href="#"><i class="icon-github"></i></a></li>
 						</ul>
 					</div>
 				</div>
-<div class="col-md-4" >
-					<div class="fh5co-person text-center to-animate">
-						<figure><img style="width:110px;height:140px" src="{% static 'kavita.jpg' %}" alt="Image"></figure>
-						<h3>Kavita Goodwani</h3>
-						<span class="fh5co-position" style="color:#15323a" ><b>Content Developer</b></span>
-						<!--<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>-->
-						<ul class="social social-circle">
-							<li><a href="https://www.instagram.com/interesting_gemini_girl_/"><i class="fa fa-instagram"></i></a></li>
-							<li><a href="https://www.facebook.com/kavita.goodwani.5"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="https://www.linkedin.com/in/kavita-goodwani-791981135"><i class="fa fa-linkedin"></i></a></li>
-						</ul>
-					</div>
-				</div>
-				
 			<!--	<div class="col-md-4">
 					<div class="fh5co-person text-center to-animate">
 						<figure><img src="{% static 'images/person3.jpg' %}" alt="Image"></figure>
@@ -589,8 +631,10 @@ style="
 							<i class="icon-home"></i>
 							Kashmere Gate, Opp. St. James Church,  <br>New Delhi, Delhi 110006
 						</li>
-												<li><i class="icon-envelope"></i>igdtunistash@gmail.com</li>
-										</ul>
+						<li><i class="icon-phone"></i> (123) 465-6789</li>
+						<li><i class="icon-envelope"></i>unistash@gmail.com</li>
+					<!--	<li><i class="icon-globe"></i> <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></li>-->
+					</ul>
 				</div>
 
 

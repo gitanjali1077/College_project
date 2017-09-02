@@ -9,7 +9,7 @@ import os
 from django.conf import settings
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    photo = models.ImageField( blank=True,default="static\abc1.jpg",null=True)#default = os.path.join(settings.STATIC_ROOT,'static','abc1.jpg'),
+    profile_photo = models.ImageField( blank=True,default="static\abc1.jpg",null=True)#default = os.path.join(settings.STATIC_ROOT,'static','abc1.jpg'),
     count = models.IntegerField(default=0)
     rate=  models.IntegerField(default=0)
                             #)#upload_to='media/')
@@ -19,9 +19,9 @@ class Profile(models.Model):
 
     def create_user_profile(sender, instance, created, **kwargs):
        if created:
-        b=instance._photo
+        b=instance._profile_photo
         #c=instance._rate
-        a=Profile.objects.create(user=instance,photo=b)#,rate=c)
+        a=Profile.objects.create(user=instance,profile_photo=b)#,rate=c)
 
     post_save.connect(create_user_profile ,sender=User)
 
@@ -75,8 +75,10 @@ class File(models.Model):
         return self.name
 
 class contribute(models.Model):
+     name_of_student=models.CharField(max_length=30)
      upload_file=models.FileField(upload_to='documents/')
-     name=models.CharField(max_length=200)
-     subject_code =models.CharField(max_length=200)
+     name_of_file=models.CharField(max_length=50)
+     subject=models.CharField(max_length=100)
+     subject_code =models.CharField(max_length=10)
     
 

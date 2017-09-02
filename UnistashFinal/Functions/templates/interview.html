@@ -34,6 +34,27 @@
             
         <![endif]-->
     <script type="text/javascript" charset="UTF-8" src="{% static 'interview/common.js' %}"></script><script type="text/javascript" charset="UTF-8" src="{% static 'interview/util.js' %}"></script><script type="text/javascript" charset="UTF-8" src="{% static 'interview/stats.js' %}"></script></head>
+
+<style>
+.circle {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 1em auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-border-radius: 99em;
+  -moz-border-radius: 99em;
+  border-radius: 99em;
+  border: 5px solid #eee;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);  
+}
+</style>
+
+
+
+
     <body >
         <!-- Start Loader -->
         <div class="loaderWrap" style="display: none;">
@@ -87,8 +108,15 @@ background-size:100%;
 <li><a href="{%url 'index' 'practical-files' %}" >Lab Files</a></li>
 
 <li>
-              <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="#nav-collapse1" aria-expanded="false" aria-controls="nav-collapse1">Courses</a>
+             <a class="btn btn-default btn-outline btn-circle collapsed"   href="{%url 'index' 'contribute'%}" aria-expanded="false" aria-controls="nav-collapse1">Contribute</a>
+            
             </li>
+{% if student %}
+<li><a>{{student.username}}</a></li>
+{% endif %}
+
+
+
           </ul>
           <ul class="collapse nav navbar-nav nav-collapse" id="nav-collapse1" >
             <li><a href="{%url 'index' 'notes' %}" >B. Tech</a></li>

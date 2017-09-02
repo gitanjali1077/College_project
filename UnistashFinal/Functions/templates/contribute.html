@@ -27,9 +27,6 @@
 		 $('ul.accordion').pixiefyAccordion();
 		})
 		</script>
-</head>
-
-{% if student.username %}
 <script type = "text/javascript" >
 
    function preventBack(){window.history.forward();}
@@ -39,7 +36,9 @@
     window.onunload=function(){null};
 
 </script>
-{% endif %}
+
+</head>
+
 <style>
 /*
 Code snippet by maridlcrmn for Bootsnipp.com
@@ -136,6 +135,7 @@ nav .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px;
 
 	
 </style>
+
 <body  style ="background-color: #00000" >
  
 
@@ -168,11 +168,9 @@ nav .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px;
           
 {% if student.username %}
 
-<li  ><img class="circle"  src="{{ abc.photo.url }} "
+<li  ><img class="circle"  src="{{ abc.profile_photo.url }} "
 
-style=" background-image:url({{ abc.photo.url }} )  ;
-  
-  width: 65px;
+style="   width: 65px;
   height: 65px;
 "></li>
 {% else %}
@@ -181,8 +179,9 @@ style="
   width: 50px;
   height: 50px;
 "></li>
-
 {% endif %}
+
+
 
   
 
@@ -243,6 +242,8 @@ Email   <div style="color:#005266">
 
   {% csrf_token %}
 {{ab}}
+
+<br>
 {% for field in upload_form %}
   <label for="user" class="label">{{field.label_tag}}</label>
 
@@ -261,8 +262,23 @@ Email   <div style="color:#005266">
         </div>
     </div>
  </div>   
-Please rate us!!! 
-<div class="rw-ui-container" style="margin-top:30px; margin-left:150px;"></div>
+</div></div>
+
+</div>
+</div>
+
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+ <p class="fl_left" style= " margin-left:25% ">Copyright &copy; 2017 - All Rights Reserved - <a href="{%url 'index' 'index' %}" >Unistash</a></p>
+
+   
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+
+
+
 <script type="text/javascript">(function(d, t, e, m){
     
     // Async Rating-Widget initialization.
