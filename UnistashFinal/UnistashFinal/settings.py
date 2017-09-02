@@ -16,11 +16,11 @@ import smtplib
 #import Functions.templatetags.myfilters.py
 
 SENDER='igdtunistash@gmail.com'
-PASS= 'igdtukijai'
+PASS= ''
 
 GOOGLE_RECAPTCHA_SECRET_KEY = '6LffWSkUAAAAAJX3JOSvGQTVw9AY9egMZ5Dmrwhm'
 EMAIL_HOST      = 'smtp.gmail.com' 
-EMAIL_HOST_PASSWORD = 'igdtukijai'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_HOST_USER = 'igdtunistash@gmail.com'
 EMAIL_PORT      = 587
 EMAIL_USE_TLS   = True
