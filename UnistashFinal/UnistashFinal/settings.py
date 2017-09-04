@@ -14,6 +14,7 @@ import os
 
 import smtplib
 #import Functions.templatetags.myfilters.py
+#import impsettings
 
 SENDER='igdtunistash@gmail.com'
 PASS= ''
@@ -30,6 +31,7 @@ SERVER_EMAIL    = 'igdtunistash@gmail.com'
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
+
 LOGIN_REDIRECT_URL = 'index.html'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -43,9 +45,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8w803fn__v4rz%7!afoos^*4l%!yt0h_imcg3&%r$(*60@%3&-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False #True #
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -130,7 +132,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/static/',
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/

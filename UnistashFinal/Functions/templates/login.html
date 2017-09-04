@@ -200,10 +200,15 @@ style="
       </div><!-- /.container -->
     </nav>
 
+
+
+
   <div class="login-wrap">
 	<div class="login-html">
+<h5 style="color:white">Please login first!</h5>
+
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
 		<div class="login-form">
 			<div class="sign-in-htm">
 {{ab}}
@@ -219,7 +224,8 @@ style="
  <div class="group">
 					<input type="submit" class="button" value="Sign In">
 				</div>
-
+Not Registered? <a href="{% url 'index' 'index' %}" style="color
+:white">sign up</a>
 <div class="hr"></div>
 				<div class="foot-lnk">
 					<a href=" {% url 'password_reset' %}">Forgot Password?</a>

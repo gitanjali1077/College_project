@@ -55,6 +55,23 @@ def index(request,string=None):
            password = user_form.cleaned_data['password']
            email = user_form.cleaned_data['email']
            c=request.FILES.get('photo')
+           repeater= User.objects.filter(email=email)
+           if len(repeater)>0:
+             msgs1="Email already exists."
+             return render(request, template, {
+           'user_form': user_form  , 'profile_form':profile_form,'msgs' : msgs1 ,'abc':abc ,'student':student     })
+
+           repeater= User.objects.filter(username=username)
+           if len(repeater)>0:
+             msgs1="Username already exists."
+             return render(request, template, {
+           'user_form': user_form  , 'profile_form':profile_form,'msgs' : msgs1 ,'abc':abc ,'student':student     })
+ 
+           if len(password)<6:
+             msgs1="Password should contain mmore than 6 characters."
+             return render(request, template, {
+           'user_form': user_form  , 'profile_form':profile_form,'msgs' : msgs1 ,'abc':abc ,'student':student     })
+      
            if c:
               user1._profile_photo=request.FILES['photo']#,False]            
            else:
@@ -111,6 +128,10 @@ def index(request,string=None):
            email = user_form.cleaned_data['email']
            name = user_form.cleaned_data['name']
            message = user_form.cleaned_data['message']
+ # for users with same mailss
+           
+
+
            
            msg=email +' '+ name+' ' + message
            smtp= smtplib.SMTP('smtp.gmail.com')
@@ -124,7 +145,7 @@ def index(request,string=None):
            #profile.user_id=user1.id+1
            #profile.college=profile_form.cleaned_data['college']
            #profile.save()
-         
+           
           
            #profile_form.save()
             #return redirect('settings:profile')
@@ -290,7 +311,8 @@ def file1(request,string1=None):
             print abc.count
             abc.save()
          else:
-             return index(request,'login')
+             return redirect('/login/')
+                #return index(request,'login')
          with open('D:/College_Project/UnistashFinal/media/'+q+'.pdf', 'rb') as pdf:
             response = HttpResponse(pdf.read(),content_type='application/pdf')
             response['Content-Disposition'] = 'filename=hass.pdf'
